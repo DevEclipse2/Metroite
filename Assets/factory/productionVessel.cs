@@ -11,9 +11,9 @@ public class productionVessel : node
     {
         
     }
-    public override Element PullElement(Element element)
+    public override Element PullElement(Element element, float amount)
     {
-        elements.amount = 0;
+        elements.amount -= amount;
         return elements;
     }
     // Update is called once per frame
