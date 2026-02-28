@@ -25,5 +25,11 @@ public class conveyer : MonoBehaviour
             LineRenderer.SetPosition(0, Source.transform.position);
             LineRenderer.SetPosition(1, Target.transform.position);
         }
+        Element element = Source.GetComponent<node>().PullElement(0);
+        if (Target.GetComponent<node>().AddElement(element))
+        {
+            element = Source.GetComponent<node>().PullElement(rate * Time.deltaTime);
+            Target.GetComponent<node>().AddElement(element);
+        }
     }
 }

@@ -76,9 +76,10 @@ public class Build : MonoBehaviour
     }
     void OnRightClick(InputValue value)
     {
+        target = null;
         checkray(out target);
 
-        if (value.isPressed == true && target.layer ==6)
+        if (value.isPressed == true && target != null&&  target.layer == 6)
         {
             source = !source;
             if(source)
@@ -114,6 +115,10 @@ public class Build : MonoBehaviour
             target.GetComponent<node>();
         }
         
+
+    }
+    public void OnJump()
+    {
 
     }
     // Update is called once per frame

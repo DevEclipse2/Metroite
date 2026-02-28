@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
             
         }
     }
+    
     public void OnLook(InputValue value)
     {
         
