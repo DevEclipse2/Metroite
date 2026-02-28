@@ -144,22 +144,30 @@ PrefabInstance:
     - target: {fileID: -3857212601033656251, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -5495902117074765545, guid: 697a3a8cea53a184fbd6eeb313847c1f, type: 3}
+      objectReference: {fileID: 2534964839176971238, guid: 243cad226086781468ca7d995663c6f6, type: 3}
     - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_Name
-      value: miner
+      value: processor
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_Layer
@@ -189,6 +197,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2948331540413351778}
+    - targetCorrespondingSourceObject: {fileID: -5568371526223589888, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3117329395182429184}
   m_SourcePrefab: {fileID: 100100000, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
 --- !u!1 &6164147341706662102 stripped
 GameObject:
@@ -222,3 +233,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
   m_PrefabInstance: {fileID: 6433984192317828487}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7778614933496669063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5568371526223589888, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
+  m_PrefabInstance: {fileID: 6433984192317828487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3117329395182429184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778614933496669063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230f1d11d251f8248a6901bccee4fa07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Processor
