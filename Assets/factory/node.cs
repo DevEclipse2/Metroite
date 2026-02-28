@@ -16,6 +16,10 @@ public class node : MonoBehaviour
     {
 
     }
+    public virtual void GetName(out string name)
+    {
+        name = "expedition 33";
+    }
     public virtual void ReadProduction(out string[] alternatives)
     {
         alternatives = null;

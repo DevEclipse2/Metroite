@@ -9,6 +9,8 @@ public class Build : MonoBehaviour
     public LayerMask objectLayer;
     public GameObject target;
     public GameObject asteroid;
+    public GameObject UIText;
+    public GameObject UIName;
     public GameObject[] Buildings;
     public Vector3 hitpt;
     public Vector3 normal;
@@ -16,6 +18,12 @@ public class Build : MonoBehaviour
     Vector2 scroll;
     public bool Factorysel;
     public string[] alternatives;
+
+
+    GameObject conveyersource;
+    GameObject conveyertarget;
+
+
     void Start()
     {
         
@@ -47,18 +55,29 @@ public class Build : MonoBehaviour
     }
     public void OnClick(InputValue value)
     {
-       
-        checkray(out target);
-        if(target == asteroid)
+        if(value.isPressed == true)
         {
-            Factorysel = false;
-            GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
-            factory.transform.parent = asteroid.transform;
+            checkray(out target);
+            if (target == asteroid)
+            {
+                Factorysel = false;
+                GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
+                factory.transform.parent = asteroid.transform;
+            }
+            else if (target.layer == 6)
+            {
+                Factorysel = true;
+                target.GetComponent<node>().ReadProduction(out alternatives);
+            }
+
         }
-        else if(target.layer == 6) 
+        
+    }
+    void OnRightClick(InputValue value)
+    {
+        if (value.isPressed == true)
         {
-            Factorysel = true;
-            target.GetComponent<node>().ReadProduction(out alternatives);
+
         }
     }
     public void OnScrollWheel(InputValue value)
@@ -82,6 +101,11 @@ public class Build : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if ( target.layer == 6) {
+            string[] name = new string[1];
+            target.GetComponent<node>().GetName(out name[1]);
+            UIName.GetComponent<displayProduction>().displaytext = name;
+        
+        }
     }
 }
