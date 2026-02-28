@@ -774,23 +774,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1131003894 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
-  m_PrefabInstance: {fileID: 1655177745}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1131003896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131003894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa936a7c11d674148b462ff10b985999, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::node
 --- !u!1001 &1159975684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,6 +847,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1183264349}
     - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+      propertyPath: lightbridge
+      value: 
+      objectReference: {fileID: 8857892125824282170, guid: ee0fee47fed171f4fa9a17fbe0459a73, type: 3}
+    - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: objectLayer.m_Bits
       value: 75
       objectReference: {fileID: 0}
@@ -878,10 +865,14 @@ PrefabInstance:
     - target: {fileID: 9053463480495090716, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: asteroid
       value: 
-      objectReference: {fileID: 1131003894}
+      objectReference: {fileID: 1183264349}
     - target: {fileID: 9053463480495090716, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: movementspeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053463480495090716, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+      propertyPath: verticalRotationLimit
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1196,9 +1187,6 @@ PrefabInstance:
     - {fileID: -8700617353114198275, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1131003896}
     - targetCorrespondingSourceObject: {fileID: -1018664272722485354, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1183264353}

@@ -76,7 +76,9 @@ public class Build : MonoBehaviour
     }
     void OnRightClick(InputValue value)
     {
-        if (value.isPressed == true)
+        checkray(out target);
+
+        if (value.isPressed == true && target.layer ==6)
         {
             source = !source;
             if(source)
@@ -91,8 +93,7 @@ public class Build : MonoBehaviour
         if(conveyersource != null && conveyertarget != null) 
         {
             GameObject Lightbridge = Instantiate(lightbridge);
-            lightbridge.GetComponent<conveyer>().Source = conveyersource;
-            lightbridge.GetComponent<conveyer>().Target = conveyertarget;
+            Lightbridge.GetComponent<conveyer>().Instance(conveyersource, conveyertarget);
             conveyersource = null;
             conveyertarget = null;
         }
@@ -119,10 +120,12 @@ public class Build : MonoBehaviour
     void Update()
     {
         if ( target.layer == 6) {
-            string[] name = new string[1];
-            target.GetComponent<node>().GetName(out name[1]);
+            /*string[] name = new string[1];
+            string name2 = " ";
+            target.GetComponent<node>().GetName(out name2);
+            name[0] = name2;
             UIName.GetComponent<displayProduction>().displaytext = name;
-        
+            */        
         }
     }
 }
