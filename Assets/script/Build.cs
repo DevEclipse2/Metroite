@@ -104,7 +104,7 @@ public class Build : MonoBehaviour
         scroll = value.Get<Vector2>();
         if (!Factorysel)
         {
-            targetIndex = (int)Mathf.Clamp(scroll.y, -1, 1);
+            targetIndex += (int)Mathf.Clamp(scroll.y, -1, 1);
             if(targetIndex < 0)
             {
                 targetIndex += Buildings.Length;
@@ -112,9 +112,16 @@ public class Build : MonoBehaviour
         }
         else
         {
-            target.GetComponent<node>();
+            int finalindex = 0;
+            target.GetComponent<node>().ReadProduction(out alternatives);
+            target.GetComponent<node>().ChangeProduction((int)Mathf.Clamp(scroll.y, -1, 1), out finalindex);
+            string[] selected = new string[1];
+            selected[0] = alternatives[finalindex];
+            UIText.GetComponent<displayProduction>().displaytext = alternatives;
+            UIName.GetComponent<displayProduction>().displaytext = selected;
+
         }
-        
+
 
     }
     public void OnJump()
@@ -124,13 +131,13 @@ public class Build : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( target.layer == 6) {
+        //if ( target.layer == 6) {
             /*string[] name = new string[1];
             string name2 = " ";
             target.GetComponent<node>().GetName(out name2);
             name[0] = name2;
             UIName.GetComponent<displayProduction>().displaytext = name;
             */        
-        }
+        //}
     }
 }

@@ -8,7 +8,13 @@ public class node : MonoBehaviour
     {
         
     }
-
+    public virtual void GetStats(out string name, out string mat , out float inputs, out float outputs)
+    {
+        name = "";
+        mat = "";
+        inputs = 0;
+        outputs = 0;
+    }
     public virtual Element PullElement(float amount)
     {
         return null;
@@ -16,6 +22,10 @@ public class node : MonoBehaviour
     public virtual bool AddElement( Element element)
     {
         return false;
+    }
+    public virtual void ForceElement(Element element)
+    {
+
     }
     public virtual void GetName(out string name)
     {
