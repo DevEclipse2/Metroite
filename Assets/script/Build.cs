@@ -38,7 +38,7 @@ public class Build : MonoBehaviour
         if (Physics.Raycast(ray, out hit, rayDistance, objectLayer))
         {
             // If the ray hits an object, output its name
-            Debug.Log("Hit object: " + hit.collider.gameObject.name);
+            //Debug.Log("Hit object: " + hit.collider.gameObject.name);
             target = hit.collider.gameObject;
             hitpt = hit.point;
             normal = hit.normal;
@@ -86,7 +86,7 @@ public class Build : MonoBehaviour
             {
                 conveyersource = target;
             }
-            else
+            else if(target != conveyersource)
             {
                 conveyertarget = target;
             }
@@ -109,14 +109,18 @@ public class Build : MonoBehaviour
             {
                 targetIndex += Buildings.Length;
             }
+            if(targetIndex > Buildings.Length) {
+
+                targetIndex = 0;
+            }
         }
         else
         {
             int finalindex = 0;
             target.GetComponent<node>().ReadProduction(out alternatives);
             target.GetComponent<node>().ChangeProduction((int)Mathf.Clamp(scroll.y, -1, 1), out finalindex);
-            string[] selected = new string[1];
-            selected[0] = alternatives[finalindex];
+            string[] selected = new string[2];
+            selected[0] = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
             UIText.GetComponent<displayProduction>().displaytext = alternatives;
             UIName.GetComponent<displayProduction>().displaytext = selected;
 

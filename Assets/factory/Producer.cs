@@ -28,7 +28,7 @@ public class Producer : node
             element = new Element();
             element.element = 2;
         }
-        //Debug.Log(production.GetMat(element.element));
+        //Debug.Log(element.amount);
         element.amount += rate * Time.deltaTime;
         inputs.Add(rate * Time.deltaTime);
         pushtimes.Add(Time.realtimeSinceStartup);
@@ -54,6 +54,9 @@ public class Producer : node
     public override void ChangeProduction(int shift, out int final)
     {
         possibleOutputs += shift;
+        if(possibleOutputs < 0) {
+            possibleOutputs = 3;
+        }
         possibleOutputs %= 4;
         element.element = possibleOutputs;
         final = possibleOutputs;
