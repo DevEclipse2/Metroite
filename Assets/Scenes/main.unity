@@ -173,7 +173,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340757229}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
@@ -653,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8632055958874330854, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.67
+      value: -3.61
       objectReference: {fileID: 0}
     - target: {fileID: 8632055958874330854, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
       propertyPath: m_LocalPosition.z
