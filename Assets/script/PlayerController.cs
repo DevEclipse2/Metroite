@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float verticalRotation = 0.0f;
     public float verticalRotationLimit = 80.0f;
     bool controller;
+    int controlmethod = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,6 +57,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            rb.linearVelocity = transform.forward * movedir.y * movementspeed + transform.right * movedir.x * movementspeed;
+            rb.linearVelocity = transform.forward * movedir.y * movementspeed + transform.right * movedir.x * movementspeed + transform.up * -3.81f;
     }
 }
