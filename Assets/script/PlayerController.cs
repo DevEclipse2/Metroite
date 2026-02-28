@@ -13,9 +13,12 @@ public class PlayerController : MonoBehaviour
     public float verticalRotationLimit = 80.0f;
     bool controller;
     int controlmethod = 0;
+    Build buildtool;
+    GameObject looking;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        buildtool = GetComponent<Build>();
         if (Gamepad.current != null)
         {
             // A gamepad is connected
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            rb.linearVelocity = transform.forward * movedir.y * movementspeed + transform.right * movedir.x * movementspeed + transform.up * -3.81f;
+
+        rb.linearVelocity = transform.forward * movedir.y * movementspeed + transform.right * movedir.x * movementspeed + transform.up * -3.81f;
     }
 }
