@@ -51,11 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc55e5c3802c924084e07dbbbbcca99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  movementspeed: 6
+  movementspeed: 10
   rb: {fileID: 2055080709667476420}
   cameraLook: {fileID: 3410052563332040677}
   camera: {fileID: 3925819799849771522}
-  verticalRotationLimit: 80
+  asteroid: {fileID: 0}
+  verticalRotationLimit: 180
 --- !u!114 &2617067133868608690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +193,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   target: {fileID: 0}
   asteroid: {fileID: 0}
+  UIText: {fileID: 0}
+  UIName: {fileID: 0}
+  lightbridge: {fileID: 0}
   Buildings: []
   hitpt: {x: 0, y: 0, z: 0}
   normal: {x: 0, y: 0, z: 0}
