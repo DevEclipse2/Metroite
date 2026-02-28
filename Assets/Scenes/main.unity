@@ -876,6 +876,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6164147341706662102, guid: a773811403b073c498a29a19610a19f2, type: 3}
     - target: {fileID: 9053463480495090716, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+      propertyPath: asteroid
+      value: 
+      objectReference: {fileID: 1131003894}
+    - target: {fileID: 9053463480495090716, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: movementspeed
       value: 10
       objectReference: {fileID: 0}

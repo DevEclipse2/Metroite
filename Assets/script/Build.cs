@@ -90,6 +90,9 @@ public class Build : MonoBehaviour
         }
         if(conveyersource != null && conveyertarget != null) 
         {
+            GameObject Lightbridge = Instantiate(lightbridge);
+            lightbridge.GetComponent<conveyer>().Source = conveyersource;
+            lightbridge.GetComponent<conveyer>().Target = conveyertarget;
             conveyersource = null;
             conveyertarget = null;
         }

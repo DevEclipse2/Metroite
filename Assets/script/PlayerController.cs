@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public Transform cameraLook;
     public GameObject camera;
+    public GameObject asteroid;
     Vector2 movedir;
     private float verticalRotation = 0.0f;
     public float verticalRotationLimit = 80.0f;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     int controlmethod = 0;
     Build buildtool;
     GameObject looking;
+    bool viewlock;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +28,10 @@ public class PlayerController : MonoBehaviour
             controller = true;
         }
         rb = GetComponent<Rigidbody>();
+    }
+    public void OnViewLock(InputValue value)
+    {
+        viewlock = !viewlock;
     }
     public void OnMove( InputValue value)
     {
@@ -44,17 +50,25 @@ public class PlayerController : MonoBehaviour
         float mouseY = value.Get<Vector2>().y;
 
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -verticalRotationLimit , verticalRotationLimit);
-        if(controller)
+        if (!viewlock)
         {
-            camera.transform.localRotation = Quaternion.Euler(verticalRotation + camera.transform.localRotation.x, 0, 0);
-            transform.Rotate(0, mouseX, 0);
+            verticalRotation = Mathf.Clamp(verticalRotation, -verticalRotationLimit , verticalRotationLimit);
+            if(controller)
+            {
+                camera.transform.localRotation = Quaternion.Euler(verticalRotation + camera.transform.localRotation.x, 0, 0);
+                transform.Rotate(0, mouseX, 0);
+            }
+            else
+            {
+                camera.transform.localRotation = Quaternion.Euler(verticalRotation * 0.4f + camera.transform.localRotation.x, 0, 0);
+                transform.Rotate(0, mouseX * 0.4f, 0);
+            }
         }
         else
         {
-            camera.transform.localRotation = Quaternion.Euler(verticalRotation * 0.4f + camera.transform.localRotation.x, 0, 0);
-            transform.Rotate(0, mouseX * 0.4f, 0);
+            asteroid.transform.Rotate(mouseY, mouseX, 0);
         }
+        
     }
 
     // Update is called once per frame
