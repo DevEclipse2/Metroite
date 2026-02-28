@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class Processor : node
 {
+    public Element product;
     public Element element;
+    public Element input1;
+    public Element input2;
+    public Element input3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Start()
+    {
+        product = new Element();
+        product.element = production.explosive;
+    }
     public override bool AddElement(Element elementin)
     {
         if (element.element == elementin.element)
