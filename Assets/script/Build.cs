@@ -11,6 +11,7 @@ public class Build : MonoBehaviour
     public GameObject asteroid;
     public GameObject UIText;
     public GameObject UIName;
+    public GameObject lightbridge;
     public GameObject[] Buildings;
     public Vector3 hitpt;
     public Vector3 normal;
@@ -22,7 +23,7 @@ public class Build : MonoBehaviour
 
     GameObject conveyersource;
     GameObject conveyertarget;
-
+    bool source;
 
     void Start()
     {
@@ -77,7 +78,20 @@ public class Build : MonoBehaviour
     {
         if (value.isPressed == true)
         {
-
+            source = !source;
+            if(source)
+            {
+                conveyersource = target;
+            }
+            else
+            {
+                conveyertarget = target;
+            }
+        }
+        if(conveyersource != null && conveyertarget != null) 
+        {
+            conveyersource = null;
+            conveyertarget = null;
         }
     }
     public void OnScrollWheel(InputValue value)
