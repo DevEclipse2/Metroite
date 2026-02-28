@@ -117,6 +117,10 @@ public class Build : MonoBehaviour
         
 
     }
+    public void OnJump()
+    {
+
+    }
     // Update is called once per frame
     void Update()
     {

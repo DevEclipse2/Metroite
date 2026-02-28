@@ -8,13 +8,14 @@ public class node : MonoBehaviour
     {
         
     }
+
     public virtual Element PullElement(float amount)
     {
         return null;
     }
-    public virtual void AddElement( Element element)
+    public virtual bool AddElement( Element element)
     {
-
+        return false;
     }
     public virtual void GetName(out string name)
     {
