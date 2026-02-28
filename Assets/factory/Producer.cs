@@ -8,6 +8,13 @@ public class Producer : node
     public Element element;
     string thingname = "Miner";
     public int possibleOutputs;
+    public float[] rates = new float[4]
+    {
+         0.4f,
+         1.6f,
+         1.6f,
+         3.2f,
+    };
     public string[] OutputNames = new string[4]
         {
             "Metal",
@@ -60,6 +67,7 @@ public class Producer : node
         possibleOutputs %= 4;
         element.element = possibleOutputs;
         final = possibleOutputs;
+        rate = rates[possibleOutputs];
     }
     public override void ReadProduction(out string[] alternatives)
     {

@@ -3,7 +3,6 @@ using UnityEngine;
 public class Processor : node
 {
     public Element product;
-    public Element element;
     public Element input1;
     public Element input2;
     public Element input3;
@@ -12,13 +11,22 @@ public class Processor : node
     {
         product = new Element();
         product.element = production.explosive;
+        input1 = new Element();
+        input1.element = production.nitrogen;
+        input2 = new Element();
+        input2.element = production.oxygen;
+        input3 = new Element();
+        input3.element = production.Hydrogen;
+
+
     }
     public override bool AddElement(Element elementin)
     {
-        if (element.element == elementin.element)
+        switch (elementin.element)
         {
-            element.amount += elementin.amount;
-            return true;
+            case production.nitrogen: input1.amount += elementin.amount; return true; break;
+            case production.oxygen:   input2.amount += elementin.amount; return true; break;
+            case production.Hydrogen:   input3.amount += elementin.amount; return true; break;
         }
         return false;
     }
