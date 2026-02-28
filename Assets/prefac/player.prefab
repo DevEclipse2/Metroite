@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc55e5c3802c924084e07dbbbbcca99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  movementspeed: 24
+  movementspeed: 6
   rb: {fileID: 2055080709667476420}
   cameraLook: {fileID: 3410052563332040677}
   camera: {fileID: 3925819799849771522}

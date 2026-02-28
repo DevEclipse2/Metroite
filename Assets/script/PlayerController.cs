@@ -56,6 +56,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            rb.linearVelocity = transform.forward * movedir.y + transform.right * movedir.x;
+            rb.linearVelocity = transform.forward * movedir.y * movementspeed + transform.right * movedir.x * movementspeed;
     }
 }
