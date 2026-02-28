@@ -8,7 +8,7 @@ public class node : MonoBehaviour
     {
         
     }
-    public virtual Element PullElement(Element element , float amount)
+    public virtual Element PullElement(float amount)
     {
         return null;
     }

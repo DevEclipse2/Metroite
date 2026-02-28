@@ -11,10 +11,12 @@ public class productionVessel : node
     {
         
     }
-    public override Element PullElement(Element element, float amount)
+    public override Element PullElement( float amount)
     {
         elements.amount -= amount;
-        return elements;
+        Element element = elements;
+        element.amount = amount;
+        return element;
     }
     // Update is called once per frame
     void Update()
