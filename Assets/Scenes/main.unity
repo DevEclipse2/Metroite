@@ -1842,6 +1842,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 417424057}
     - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+      propertyPath: Poor
+      value: 
+      objectReference: {fileID: 3869152707707409489, guid: 3584f905505e3134aab96c802cb98a5c, type: 3}
+    - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: UIName
       value: 
       objectReference: {fileID: 317167900}
@@ -1895,7 +1899,7 @@ PrefabInstance:
       objectReference: {fileID: 6164147341706662102, guid: a773811403b073c498a29a19610a19f2, type: 3}
     - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: excludeDestroy.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: 'excludeDestroy.Array.data[0]'
@@ -1905,6 +1909,10 @@ PrefabInstance:
       propertyPath: 'excludeDestroy.Array.data[1]'
       value: 
       objectReference: {fileID: 1653139133}
+    - target: {fileID: 8722730421555447053, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+      propertyPath: 'excludeDestroy.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3869152707707409489, guid: 3584f905505e3134aab96c802cb98a5c, type: 3}
     - target: {fileID: 9053463480495090716, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
       propertyPath: asteroid
       value: 
