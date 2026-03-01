@@ -47,6 +47,9 @@ public class Build : MonoBehaviour
 
 
     public float Metal = 30;
+    public float Oxygen = 0;
+    public float Nitrogen = 20;
+
     public GameObject Port;
     public int extractorC;
     public int AssemblerC;
@@ -76,6 +79,8 @@ public class Build : MonoBehaviour
                     //destroy lightbridge
                     int index = Conveyers.IndexOf(game);
                     Conveyers.RemoveAt(index);
+                    conveyersource = null;
+                    conveyertarget = null;
                     Destroy(game);
                     Destroy(Lightbridge);
                     return;
@@ -92,7 +97,9 @@ public class Build : MonoBehaviour
                 }
             }
         }
-        
+        Lightbridge.GetComponent<conveyer>().Instance(conveyersource, conveyertarget);
+        conveyersource = null;
+        conveyertarget = null;
 
     }
 
