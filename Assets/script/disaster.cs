@@ -99,7 +99,6 @@ public class disaster : MonoBehaviour
             //call for a random disaster to happen here
         }
 
-        pressure -= (baseDepressRate * Time.deltaTime);
 
         
         //checks for atmosphere survivability
@@ -122,7 +121,7 @@ public class disaster : MonoBehaviour
             scbaRemaining -= (Time.deltaTime / scbaUseTime);
         }
         else {
-            scbaRemaining += (scbaRefillRate * (Time.deltaTime * scbaRefillRate));
+            scbaRemaining += ((Time.deltaTime * scbaRefillRate) / scbaUseTime);
         }
 
 
@@ -135,15 +134,11 @@ public class disaster : MonoBehaviour
         {
             pressure = normPressure;
         }
-        if ( scbaRemaining >= 1 )
-        {
-            scbaRemaining = 1;
-        }
         if ( hullIntegrity >= normHullIntegrity )
         {
             hullIntegrity = normHullIntegrity;
         }
-        
+        Mathf.Clamp01(scbaRemaining);
 
 
 

@@ -7,6 +7,16 @@ public class Drill : node
     Element explosive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int Progress = 60;
+    public float Cd;
+    bool canpress;
+    private void Update()
+    {
+        Cd += Time.deltaTime;
+        if(Cd > 30)
+        {
+            canpress = true;
+        }
+    }
     public override bool AddElement(Element elementin)
     {
         switch (elementin.element)
@@ -18,8 +28,10 @@ public class Drill : node
     // Update is called once per frame
     public void Blast()
     {
+        
         if(explosive.amount >= 0)
         {
+            canpress = false;
             if (explosive.amount > 15f)
             {
                 explosive.amount -= 15;

@@ -255,6 +255,11 @@ public class Build : MonoBehaviour
     }
     public void OnScrollWheel(InputValue value)
     {
+        checkray(out target);
+        if(target == asteroid)
+        {
+            Factorysel = false;
+        }
         scroll = value.Get<Vector2>();
         if (!Factorysel)
         {
