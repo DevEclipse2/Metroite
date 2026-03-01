@@ -57,6 +57,7 @@ public class disaster : MonoBehaviour
         hullIntegrity = normHullIntegrity;// = 1f; //in percentage 0-1 
 
         //edit below to tweak difficulty
+<<<<<<< Updated upstream
         //disasterChance;// = 0.3f;// 0 to 1
         //disasterCheckInterval;// = 15f;//in seconds
         //baseDepressRate;// = 5f;//In hPa lost per second
@@ -67,6 +68,18 @@ public class disaster : MonoBehaviour
 
         //scbaUseTime;// = 60f;//seconds
         //scbaRefillRate;// = 2f;//ratio against use rate 
+=======
+        disasterChance;// = 0.3f;// 0 to 1
+        disasterCheckInterval;// = 15f;//in seconds
+        baseDepressRate;// = 5f;//In hPa lost per second
+
+        breathablePressLimit;// = 200f;//hPa
+        lethalPressLimit;// = 50f;//hPa
+        breathableOxyLimit;// = 0.05f;//percentage 0-1
+
+        scbaUseTime;// = 60f;//seconds
+        scbaRefillRate;// = 2f;//ratio against use rate 
+>>>>>>> Stashed changes
 
 
 

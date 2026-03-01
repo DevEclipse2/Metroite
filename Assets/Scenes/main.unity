@@ -5038,7 +5038,11 @@ Transform:
   m_PrefabInstance: {fileID: 1655177745}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1001 &4279316138515934861
+=======
+--- !u!1001 &2146056851
+>>>>>>> Stashed changes
 =======
 --- !u!1001 &2146056851
 >>>>>>> Stashed changes
@@ -5047,6 +5051,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     m_TransformParent: {fileID: 0}
     m_Modifications:
@@ -5094,6 +5099,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: tutorial
 =======
+=======
+>>>>>>> Stashed changes
     m_TransformParent: {fileID: 412781802}
     m_Modifications:
     - target: {fileID: 6082300085835459852, guid: 8086ced4638c9fb4faf5e767b515f3b4, type: 3}
@@ -5155,6 +5162,9 @@ PrefabInstance:
     - target: {fileID: 7148186066133465467, guid: 8086ced4638c9fb4faf5e767b515f3b4, type: 3}
       propertyPath: m_Name
       value: fire (9)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5162,14 +5172,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_SourcePrefab: {fileID: 100100000, guid: 14a0a220fe32f004cac47326675fbc23, type: 3}
 =======
+=======
+>>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 8086ced4638c9fb4faf5e767b515f3b4, type: 3}
 --- !u!4 &2146056852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6082300085835459852, guid: 8086ced4638c9fb4faf5e767b515f3b4, type: 3}
   m_PrefabInstance: {fileID: 2146056851}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
