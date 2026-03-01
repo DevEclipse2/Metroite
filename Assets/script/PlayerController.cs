@@ -44,7 +44,12 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-    
+    void OnCancel()
+    {
+        Cursor.lockState = CursorLockMode.None;
+
+    }
+
     public void OnLook(InputValue value)
     {
         

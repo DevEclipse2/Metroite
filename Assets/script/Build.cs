@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,14 +15,24 @@ public class Build : MonoBehaviour
     public GameObject UIName;
     public GameObject lightbridge;
     public GameObject[] Buildings;
+    public string[] BuildingsName = new string[6]
+    {
+     "Extractor",
+     "Assembler",
+     "Node",
+     "Blast Rig",
+     "Fuel Cell",
+     " "
+    };
     public Vector3 hitpt;
     public Vector3 normal;
-    public int targetIndex;
+    public int targetIndex = 0;
     Vector2 scroll;
     public bool Factorysel;
     public string[] alternatives;
 
     public GameObject ProductionStat;
+    public GameObject Menu;
     List<GameObject> displayingscreens = new List<GameObject>();
     List<GameObject> productionscreens = new List<GameObject>();
     public Transform SpawnScreen;
@@ -73,9 +85,25 @@ public class Build : MonoBehaviour
                 Factorysel = true;
                 target.GetComponent<node>().ReadProduction(out alternatives);
             }
+            else if(target.layer == 10) {
+                target.gameObject.GetComponent<Button>().Press();
+
+            }
 
         }
         
+    }
+    private void OnPrevious()
+    {
+        checkray(out target);
+        if (target.layer == 9 && target != Menu)
+        {
+            Destroy(target);
+        }
+        if(target == Menu)
+        {
+            Menu.transform.position = new Vector3(100, 100, 100);
+        }
     }
     void OnRightClick(InputValue value)
     {
@@ -141,8 +169,18 @@ public class Build : MonoBehaviour
                 if(displayingscreens.Contains(target.gameObject))
                 {
                     int index = displayingscreens.IndexOf(target.gameObject);
-                    productionscreens[index].transform.position = SpawnScreen.position;
-                    productionscreens[index].transform.rotation = Quaternion.LookRotation(normal);
+                    if(productionscreens[index] == null)
+                    {
+                        productionscreens[index] = Instantiate(ProductionStat, SpawnScreen.transform.position, SpawnScreen.transform.rotation);
+                        productionscreens[index].GetComponent<updateProduction>().productionStats(target.gameObject);
+
+                    }
+                    else
+                    {
+                        productionscreens[index].transform.position = SpawnScreen.position;
+                        productionscreens[index].transform.rotation = SpawnScreen.transform.rotation;
+
+                    }
                 }
                 
             }
@@ -155,9 +193,16 @@ public class Build : MonoBehaviour
             }
         }
     }
+
+    public void OnInteract()
+    {
+        Menu.transform.position = SpawnScreen.position;
+        Menu.transform.rotation = SpawnScreen.rotation;
+    }
     // Update is called once per frame
     void Update()
     {
+        UIName.GetComponent<TextMeshProUGUI>().text = BuildingsName[targetIndex];
         //if ( target.layer == 6) {
             /*string[] name = new string[1];
             string name2 = " ";

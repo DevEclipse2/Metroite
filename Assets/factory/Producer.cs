@@ -49,13 +49,17 @@ public class Producer : node
         }
         if (pushtimes.Count > 0)
         {
+
             if (pushtimes[0] < Time.realtimeSinceStartup - 1)
             {
                 pushtimes.RemoveAt(0);
-                inputs.RemoveAt(0);
-
+                if (inputs.Count > 0)
+                {
+                    inputs.RemoveAt(0);
+                }
             }
         }
+
     }
     public override void ChangeProduction(int shift, out int final)
     {
@@ -106,7 +110,6 @@ public class Producer : node
     }
     public override Element PullElement(float amount)
     {
-        outputs.Add(amount);
         pulltimes.Add(Time.realtimeSinceStartup);
         Element elementout = new Element();
         elementout.element = element.element;
@@ -114,11 +117,15 @@ public class Producer : node
         {
             element.amount -= amount;
             elementout.amount = amount;
+            outputs.Add(amount);
+
         }
         else
         {
             elementout.amount = element.amount;
             element.amount = 0;
+            outputs.Add(elementout.amount);
+
         }
         return elementout;
     }
