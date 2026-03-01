@@ -14,6 +14,7 @@ public class Build : MonoBehaviour
     public GameObject target;
     public GameObject asteroid;
     public GameObject UIText;
+    public GameObject UIStuff;
     public GameObject UIName;
     public GameObject lightbridge;
     public GameObject[] Buildings;
@@ -43,7 +44,7 @@ public class Build : MonoBehaviour
     GameObject conveyersource;
     GameObject conveyertarget;
     bool source;
-    GameObject Drill;
+    public GameObject Drill;
 
 
     public float Metal = 30;
@@ -272,10 +273,8 @@ public class Build : MonoBehaviour
             int finalindex = 0;
             target.GetComponent<node>().ReadProduction(out alternatives);
             target.GetComponent<node>().ChangeProduction((int)Mathf.Clamp(scroll.y, -1, 1), out finalindex);
-            string[] selected = new string[2];
-            selected[0] = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
             UIText.GetComponent<displayProduction>().displaytext = alternatives;
-            UIName.GetComponent<displayProduction>().displaytext = selected;
+            UIStuff.GetComponent<TextMeshProUGUI>().text = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
 
         }
 

@@ -8,7 +8,7 @@ public class disaster : MonoBehaviour
     public float hullIntegrity;
     public bool depressValve;
     
-    public float disasteCheckInterval;
+    public float disasterCheckInterval;
     public float disasterChance;
     public float disasterTimer;
     public float baseDepressRate;
@@ -20,6 +20,10 @@ public class disaster : MonoBehaviour
     public float breathableAtmoLimit;
     public float lethalAtmoLimit;
 
+    public Transform  ScreenSpawner;
+    public GameObject OxygenAlert;
+    public GameObject PressureAlert;
+    public GameObject FireAlert;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,7 +46,7 @@ public class disaster : MonoBehaviour
 
 
 
-        disasterTimer = disasteCheckInterval;
+        disasterTimer = disasterCheckInterval;
     }
 
     // Update is called once per frame
@@ -52,7 +56,7 @@ public class disaster : MonoBehaviour
             disasterTimer -= Time.deltaTime;
         }
         if (disasterTimer <= 0) {
-            if (float random.Next(0,1) <= disasterChance) {
+            if (Random.RandomRange(0,1) <= disasterChance) {
                 disasterTrigger = true;
             }
             disasterTimer = disasterCheckInterval;
@@ -62,7 +66,7 @@ public class disaster : MonoBehaviour
 
         }
 
-        pressure -= (baseDepressRate * Time.deltaTime)
+        pressure -= (baseDepressRate * Time.deltaTime);
 
     }
 }
