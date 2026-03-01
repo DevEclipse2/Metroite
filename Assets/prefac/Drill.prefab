@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b475bf91daa777b4b8865416144379e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Drill
+  Progress: 60
 --- !u!1001 &6433984192317828487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77,15 +78,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.34
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.34
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.34
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalPosition.x
@@ -139,6 +140,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2534964839176971238, guid: 513bfa73d4c9e7844a935196a457c3b4, type: 3}
+    - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.74
+      objectReference: {fileID: 0}
     - target: {fileID: -2577548232221058511, guid: 3c0802c06fa4e014c84ccfb739559d23, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
