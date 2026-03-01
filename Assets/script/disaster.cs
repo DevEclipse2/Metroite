@@ -38,6 +38,8 @@ public class disaster : MonoBehaviour
     public float scbaRefillRate;
     public bool scbaInUse;
 
+    public bool ifFireHappeningRn = false;
+
     //check for these to trigger game-overs
     public bool gameOverOxy;
     public bool gameOverDepress;
@@ -47,24 +49,24 @@ public class disaster : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
         //norm. and max. values of vital stuff
-        oxygen = normOxygen = 0.21f; //in percentage 0-1
-        pressure = normPressure = 1013.25f; //in hectopascals(hPa)
-        temperature = normTemperature = 25f; //in degrees Celsius
-        hullIntegrity = normHullIntegrity = 1f; //in percentage 0-1 
+        oxygen = normOxygen;// = 0.21f; //in percenge 0-1
+        pressure = normPressure;// = 1013.25f; //in hectopascals(hPa)
+        temperature = normTemperature;// = 25f; //in degrees Celsius
+        hullIntegrity = normHullIntegrity;// = 1f; //in percentage 0-1 
 
         //edit below to tweak difficulty
-        disasterChance = 0.3f;// 0 to 1
-        disasterCheckInterval = 15f;//in seconds
-        baseDepressRate = 5f;//In hPa lost per second
+        disasterChance;// = 0.3f;// 0 to 1
+        disasterCheckInterval;// = 15f;//in seconds
+        baseDepressRate;// = 5f;//In hPa lost per second
 
-        breathablePressLimit = 200f;//hPa
-        lethalPressLimit = 50f;//hPa
-        breathableOxyLimit = 0.05f;//percentage 0-1
+        breathablePressLimit;// = 200f;//hPa
+        lethalPressLimit;// = 50f;//hPa
+        breathableOxyLimit;// = 0.05f;//percentage 0-1
 
-        scbaUseTime = 60f;//seconds
-        scbaRefillRate = 2f;//ratio against use rate 
+        scbaUseTime;// = 60f;//seconds
+        scbaRefillRate;// = 2f;//ratio against use rate 
 
 
 
@@ -97,6 +99,7 @@ public class disaster : MonoBehaviour
 
         if (disasterTrigger = true) {
             //call for a random disaster to happen here
+            
         }
 
 
@@ -123,6 +126,22 @@ public class disaster : MonoBehaviour
         else {
             scbaRemaining += ((Time.deltaTime * scbaRefillRate) / scbaUseTime);
         }
+
+
+
+
+        //fire
+        if (ifFireHappeningRn = true) {
+            
+        }
+        if (ifFireHappeningRn = true) {
+            object.DisasterEventFires.Enable = true;
+        }
+        else
+        {
+            object.DisasterEventFires.Enable = false;
+        }
+
 
 
         //band-aid max value limiters
