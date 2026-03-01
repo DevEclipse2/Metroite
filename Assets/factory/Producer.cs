@@ -45,7 +45,6 @@ public class Producer : node
             {
                 pulltimes.RemoveAt(0);
                 outputs.RemoveAt(0);
-
             }
         }
         if (pushtimes.Count > 0)
@@ -109,9 +108,18 @@ public class Producer : node
     {
         outputs.Add(amount);
         pulltimes.Add(Time.realtimeSinceStartup);
-        element.amount -= amount;
-        Element elementout = element;
-        elementout.amount = amount;
+        Element elementout = new Element();
+        elementout.element = element.element;
+        if (element.amount > amount)
+        {
+            element.amount -= amount;
+            elementout.amount = amount;
+        }
+        else
+        {
+            elementout.amount = element.amount;
+            element.amount = 0;
+        }
         return elementout;
     }
 }

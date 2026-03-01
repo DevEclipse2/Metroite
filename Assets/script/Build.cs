@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +20,10 @@ public class Build : MonoBehaviour
     public bool Factorysel;
     public string[] alternatives;
 
-
+    public GameObject ProductionStat;
+    List<GameObject> displayingscreens = new List<GameObject>();
+    List<GameObject> productionscreens = new List<GameObject>();
+    public Transform SpawnScreen;
     GameObject conveyersource;
     GameObject conveyertarget;
     bool source;
@@ -130,7 +133,27 @@ public class Build : MonoBehaviour
     }
     public void OnJump()
     {
+        checkray(out target);
+        if(target.layer == 6)
+        {
+            if(displayingscreens.Count > 0 )
+            {
+                if(displayingscreens.Contains(target.gameObject))
+                {
+                    int index = displayingscreens.IndexOf(target.gameObject);
+                    productionscreens[index].transform.position = SpawnScreen.position;
+                    productionscreens[index].transform.rotation = Quaternion.LookRotation(normal);
+                }
+                
+            }
+            else
+            {
+                displayingscreens.Add(target.gameObject);
+                productionscreens.Add(Instantiate(ProductionStat, SpawnScreen.transform.position, SpawnScreen.transform.rotation));
+                productionscreens[productionscreens.Count - 1].GetComponent<updateProduction>().productionStats(target.gameObject);
 
+            }
+        }
     }
     // Update is called once per frame
     void Update()
