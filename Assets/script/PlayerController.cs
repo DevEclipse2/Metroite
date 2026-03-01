@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         if (value != null)
         {
-            Debug.Log(value.Get<Vector2>());
+            //Debug.Log(value.Get<Vector2>());
             movedir = value.Get<Vector2>();
             //cameraLook.rotation
             
@@ -46,7 +46,15 @@ public class PlayerController : MonoBehaviour
     }
     void OnCancel()
     {
-        Cursor.lockState = CursorLockMode.None;
+        if(Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
     }
 

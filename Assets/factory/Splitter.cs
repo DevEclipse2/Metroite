@@ -16,6 +16,7 @@ public class Splitter : node
         if(element == null)
         {
             element = elementin;
+            return true;
         }
         if (element.element == elementin.element)
         {
@@ -78,6 +79,12 @@ public class Splitter : node
     }
     public override Element PullElement(float amount)
     {
+        if(element == null)
+        {
+            element = new Element();
+            element.element = production.Hydrogen;
+            element.amount = 0;
+        }
         outputs.Add(amount);
         pulltimes.Add(Time.realtimeSinceStartup);
         Element elementout = new Element();

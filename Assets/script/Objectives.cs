@@ -7,6 +7,6 @@ public class Objectives : Button
     public Transform location;
     public override void Press()
     {
-        Instantiate(ObjectiveScreen,location.position, Camera.main.transform.rotation);
+        Instantiate(ObjectiveScreen,location.position, location.transform.rotation);
     }
 }

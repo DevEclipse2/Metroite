@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -35,11 +36,58 @@ public class Build : MonoBehaviour
     public GameObject Menu;
     List<GameObject> displayingscreens = new List<GameObject>();
     List<GameObject> productionscreens = new List<GameObject>();
+    public GameObject[] excludeDestroy;
     public Transform SpawnScreen;
     GameObject conveyersource;
     GameObject conveyertarget;
     bool source;
 
+
+
+    int Metal;
+
+    List<GameObject> Producers;
+    List<GameObject> Conveyers = new List<GameObject>();
+
+    void checkConveyer(GameObject Lightbridge)
+    {
+        if(Conveyers.Count == 0)
+        {
+            Conveyers.Add(Lightbridge);
+            Lightbridge.GetComponent<conveyer>().Instance(conveyersource, conveyertarget);
+            conveyersource = null;
+            conveyertarget = null;
+            return;
+        }
+        foreach(GameObject game in Conveyers)
+        {
+            conveyer ltb = game.GetComponent<conveyer>();
+            if(ltb != null)
+            {
+                if(ltb.Source == conveyersource && ltb.Target == conveyertarget)
+                {
+                    //destroy lightbridge
+                    int index = Conveyers.IndexOf(game);
+                    Conveyers.RemoveAt(index);
+                    Destroy(game);
+                    Destroy(Lightbridge);
+                    return;
+                }
+                else if (ltb.Source == conveyertarget && ltb.Target == conveyersource)
+                {
+                    int index = Conveyers.IndexOf(game);
+                    Lightbridge.GetComponent<conveyer>().Instance(conveyersource, conveyertarget);
+                    conveyersource = null;
+                    conveyertarget = null;
+                    Conveyers[index] = Lightbridge;
+                    Destroy(game);
+                    return;
+                }
+            }
+        }
+        
+
+    }
     void Start()
     {
         
@@ -96,13 +144,17 @@ public class Build : MonoBehaviour
     private void OnPrevious()
     {
         checkray(out target);
-        if (target.layer == 9 && target != Menu)
+        if (target.layer == 9 )
         {
-            Destroy(target);
-        }
-        if(target == Menu)
-        {
-            Menu.transform.position = new Vector3(100, 100, 100);
+            if(!excludeDestroy.Contains(target.gameObject))
+            {
+                Destroy(target);
+
+            }
+            else
+            {
+                target.gameObject.transform.position = new Vector3(100,100, 100);
+            }
         }
     }
     void OnRightClick(InputValue value)
@@ -125,9 +177,7 @@ public class Build : MonoBehaviour
         if(conveyersource != null && conveyertarget != null) 
         {
             GameObject Lightbridge = Instantiate(lightbridge);
-            Lightbridge.GetComponent<conveyer>().Instance(conveyersource, conveyertarget);
-            conveyersource = null;
-            conveyertarget = null;
+            checkConveyer(Lightbridge);
         }
     }
     public void OnScrollWheel(InputValue value)
@@ -164,6 +214,7 @@ public class Build : MonoBehaviour
         checkray(out target);
         if(target.layer == 6)
         {
+            /*
             if(displayingscreens.Count > 0 )
             {
                 if(displayingscreens.Contains(target.gameObject))
@@ -186,18 +237,20 @@ public class Build : MonoBehaviour
             }
             else
             {
+               */
                 displayingscreens.Add(target.gameObject);
                 productionscreens.Add(Instantiate(ProductionStat, SpawnScreen.transform.position, SpawnScreen.transform.rotation));
                 productionscreens[productionscreens.Count - 1].GetComponent<updateProduction>().productionStats(target.gameObject);
 
-            }
+            //}
         }
     }
 
-    public void OnInteract()
+    public void OnSprint(InputValue value)
     {
-        Menu.transform.position = SpawnScreen.position;
-        Menu.transform.rotation = SpawnScreen.rotation;
+        Debug.Log("interact");
+        Menu.transform.position = SpawnScreen.transform.position;
+        Menu.transform.rotation = SpawnScreen.transform.rotation;
     }
     // Update is called once per frame
     void Update()
