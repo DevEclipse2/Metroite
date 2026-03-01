@@ -5039,11 +5039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 --- !u!1001 &4279316138515934861
-=======
---- !u!1001 &2146056851
->>>>>>> Stashed changes
 =======
 --- !u!1001 &2146056851
 >>>>>>> Stashed changes
@@ -5055,7 +5051,6 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     m_TransformParent: {fileID: 0}
@@ -5104,8 +5099,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: tutorial
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     m_TransformParent: {fileID: 412781802}
@@ -5170,9 +5163,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: fire (9)
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -5183,11 +5173,8 @@ PrefabInstance:
     m_AddedComponents: []
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   m_SourcePrefab: {fileID: 100100000, guid: 14a0a220fe32f004cac47326675fbc23, type: 3}
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 8086ced4638c9fb4faf5e767b515f3b4, type: 3}
@@ -5197,9 +5184,6 @@ Transform:
   m_PrefabInstance: {fileID: 2146056851}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
