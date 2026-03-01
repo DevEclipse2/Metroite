@@ -9,10 +9,15 @@ public class Tutorial : MonoBehaviour
     public int index = 0;
     float timer;
     bool playing;
+    public GameObject lifeSupport;
+    disaster disaster;
     void Start()
     {
         audioSources[index].Play();
         playing = true;
+        disaster = lifeSupport.GetComponent<disaster>();
+        disaster.ifFireHappeningRn = false;
+
     }
     public void Progress()
     {
@@ -21,6 +26,10 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(index == -1)
+        {
+            return;
+        }
         if(playing)
         {
             timer += Time.deltaTime;
@@ -32,12 +41,21 @@ public class Tutorial : MonoBehaviour
             index++;
             timer = 0;
             playing = false;
-            if (auto[index])
+            if(index >= Lengths.Length)
             {
-                playing = true;
-                audioSources[index].Play();
-
+                disaster.ifFireHappeningRn = true;
+                index = -1;
             }
+            else
+            {
+                if (auto[index])
+                {
+                    playing = true;
+                    audioSources[index].Play();
+
+                }
+            }
+            
         }
     }
 }

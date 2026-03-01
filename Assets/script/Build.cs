@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
@@ -18,6 +18,8 @@ public class Build : MonoBehaviour
     public GameObject UIName;
     public GameObject lightbridge;
     public GameObject[] Buildings;
+    public GameObject lifeSupport;
+    disaster disaster;
     public string[] BuildingsName = new string[6]
     {
      "Extractor",
@@ -151,7 +153,7 @@ public class Build : MonoBehaviour
     }
     void Start()
     {
-        
+        disaster = lifeSupport.GetComponent<disaster>();
     }
     public void checkray(out GameObject target)
     {
@@ -331,6 +333,9 @@ public class Build : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        disaster.Increment(Nitrogen, Oxygen);
+        Nitrogen = 0;
+        Oxygen = 0;
         UIName.GetComponent<TextMeshProUGUI>().text = BuildingsName[targetIndex];
         //if ( target.layer == 6) {
             /*string[] name = new string[1];

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class disaster : MonoBehaviour
 {
     //the var names should be self-explainatory enough right??
@@ -10,7 +10,7 @@ public class disaster : MonoBehaviour
     public float hullIntegrity;
     public bool depressValveOpen = false;
 
-    public float normOxygen;
+    public float normOxygen = 0.21f;
     public float normPressure;
     public float normTemperature;
     public float normHullIntegrity;
@@ -44,43 +44,26 @@ public class disaster : MonoBehaviour
     public bool gameOverOxy;
     public bool gameOverDepress;
 
-
-
+    public GameObject FireContainer;
+    public GameObject screen;
+    public Transform screenpos;
+    float spawn;
+    public void Increment(float value, float oxy)
+    {
+        oxygen += oxy;
+        pressure += (value + oxy) * 500;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         //norm. and max. values of vital stuff
-        oxygen = normOxygen;// = 0.21f; //in percenge 0-1
-        pressure = normPressure;// = 1013.25f; //in hectopascals(hPa)
-        temperature = normTemperature;// = 25f; //in degrees Celsius
-        hullIntegrity = normHullIntegrity;// = 1f; //in percentage 0-1 
+        oxygen = normOxygen = 0.21f; //in percenge 0-1
+        pressure = normPressure = 1013.25f; //in hectopascals(hPa)
+        temperature = normTemperature = 25f; //in degrees Celsius
+        hullIntegrity = normHullIntegrity = 1f; //in percentage 0-1 
 
         //edit below to tweak difficulty
-<<<<<<< Updated upstream
-        //disasterChance;// = 0.3f;// 0 to 1
-        //disasterCheckInterval;// = 15f;//in seconds
-        //baseDepressRate;// = 5f;//In hPa lost per second
-
-        //breathablePressLimit;// = 200f;//hPa
-        //lethalPressLimit;// = 50f;//hPa
-        //breathableOxyLimit;// = 0.05f;//percentage 0-1
-
-        //scbaUseTime;// = 60f;//seconds
-        //scbaRefillRate;// = 2f;//ratio against use rate 
-=======
-        disasterChance;// = 0.3f;// 0 to 1
-        disasterCheckInterval;// = 15f;//in seconds
-        baseDepressRate;// = 5f;//In hPa lost per second
-
-        breathablePressLimit;// = 200f;//hPa
-        lethalPressLimit;// = 50f;//hPa
-        breathableOxyLimit;// = 0.05f;//percentage 0-1
-
-        scbaUseTime;// = 60f;//seconds
-        scbaRefillRate;// = 2f;//ratio against use rate 
->>>>>>> Stashed changes
-
 
 
 
@@ -91,6 +74,25 @@ public class disaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameOverDepress || gameOverOxy)
+        {
+            SceneManager.LoadScene("title");
+
+        }
+        if (ifFireHappeningRn)
+        {
+            spawn += Time.deltaTime;
+            if(spawn > 0.8f)
+            {
+                Instantiate(screen, screenpos.position , screenpos.rotation);
+                spawn = 0;
+            }
+        }
+        if(depressValveOpen)
+        {
+            pressure -= 400;
+            ifFireHappeningRn = false;
+        }
         //base depress and O2 consum.
         pressure -= (baseDepressRate * Time.deltaTime);
         oxygen -= (baseOxyConsumRate * Time.deltaTime);
@@ -98,75 +100,77 @@ public class disaster : MonoBehaviour
         //damage-caused depress.
         pressure -= (damageDepressMultiplier * (hullIntegrity - 1) * Time.deltaTime);
 
-        
-        if (disasterTimer > 0 ) {
+
+        if (disasterTimer > 0)
+        {
             disasterTimer -= Time.deltaTime;
         }
-        if (disasterTimer <= 0) {
+        if (disasterTimer <= 0)
+        {
             float disasterRand = Random.Range(0, 1);
-            if (disasterRand <= disasterChance) {
+            if (disasterRand <= disasterChance)
+            {
                 disasterTrigger = true;
             }
             disasterTimer = disasterCheckInterval;
         }
 
-        if (disasterTrigger = true) {
+        if (disasterTrigger = true)
+        {
             //call for a random disaster to happen here
-            
+
         }
 
 
-        
+
         //checks for atmosphere survivability
-        if (pressure <= lethalPressLimit) {
+        if (pressure <= lethalPressLimit)
+        {
             gameOverDepress = true;
         }
-        else if ((oxygen <= breathableOxyLimit) || (pressure <= breathablePressLimit)) {
+        else if ((oxygen <= breathableOxyLimit) || (pressure <= breathablePressLimit))
+        {
             ifBreathableAtmo = false;
         }
-        else {
+        else
+        {
             ifBreathableAtmo = true;
         }
 
         //SCBA (Self-contained Breathing Apperatus) (basically emergency air tank) behaviour
-        if (scbaRemaining <= 0) {
+        if (scbaRemaining <= 0)
+        {
             gameOverOxy = true;
         }
-        if (ifBreathableAtmo == true) {
+        if (ifBreathableAtmo == true)
+        {
             scbaInUse = true;
             scbaRemaining -= (Time.deltaTime / scbaUseTime);
         }
-        else {
+        else
+        {
             scbaRemaining += ((Time.deltaTime * scbaRefillRate) / scbaUseTime);
         }
 
 
 
+        FireContainer.SetActive(ifFireHappeningRn);
 
         //fire
-        if (ifFireHappeningRn = true) {
-            
-        }
-        if (ifFireHappeningRn = true) {
-            object.DisasterEventFires.Enable = true;
-        }
-        else
-        {
-            object.DisasterEventFires.Enable = false;
-        }
+
 
 
 
         //band-aid max value limiters
-        if ( oxygen >= normOxygen )
+        if (oxygen >= normOxygen)
         {
             oxygen = normOxygen;
         }
-        if ( pressure >= normPressure )
+        if (pressure >= normPressure)
         {
             pressure = normPressure;
         }
-        if ( hullIntegrity >= normHullIntegrity )
+        if (hullIntegrity >= normHullIntegrity)
         {
             hullIntegrity = normHullIntegrity;
         }
@@ -176,4 +180,3 @@ public class disaster : MonoBehaviour
 
     }
 }
- 
