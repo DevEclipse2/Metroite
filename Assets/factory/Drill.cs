@@ -9,6 +9,8 @@ public class Drill : node
     public int Progress = 60;
     public float Cd;
     bool canpress;
+    public GameObject lifeSupport;
+    disaster disaster;
     private void Update()
     {
         Cd += Time.deltaTime;
@@ -17,6 +19,13 @@ public class Drill : node
             canpress = true;
         }
     }
+    void Start()
+    {
+        disaster = lifeSupport.GetComponent<disaster>();
+
+    }
+
+
     public override bool AddElement(Element elementin)
     {
         switch (elementin.element)
@@ -28,8 +37,9 @@ public class Drill : node
     // Update is called once per frame
     public void Blast()
     {
-        
-        if(explosive.amount >= 0)
+        disaster.ifFireHappeningRn = true;
+        disaster.hullIntegrity -= 0.15f;
+        if (explosive.amount >= 0)
         {
             canpress = false;
             if (explosive.amount > 15f)
