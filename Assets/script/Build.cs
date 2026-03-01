@@ -43,7 +43,7 @@ public class Build : MonoBehaviour
     GameObject conveyersource;
     GameObject conveyertarget;
     bool source;
-
+    GameObject Drill;
 
 
     public float Metal = 30;
@@ -133,6 +133,7 @@ public class Build : MonoBehaviour
                 if (Metal > BlastRigC)
                 {
                     Metal -= BlastRigC;
+                    BlastRigC = 100000000;
                     return true;
                 }
                 return false;
@@ -188,6 +189,10 @@ public class Build : MonoBehaviour
                 {
                     GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
                     factory.transform.parent = asteroid.transform;
+                    if(BlastRigC > 1000 && Drill == null)
+                    {
+                        Drill = factory;
+                    }
                 }
                 else
                 {

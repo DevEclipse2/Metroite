@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8355481482160383632}
   - component: {fileID: 5690849021143303416}
   - component: {fileID: 5842025877937259905}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Poor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3869152707707409489}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107, y: -0.7, z: -21.41}
+  m_LocalRotation: {x: -0.7687854, y: -0.114622355, z: -0.14387426, w: 0.61247927}
+  m_LocalPosition: {x: -4.413672, y: 0.33620158, z: -1.7037452}
   m_LocalScale: {x: 1.7464, y: 1, z: 1.3680515}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 3081326588712133088}
   - component: {fileID: 3195175874195225173}
   - component: {fileID: 5921414213284730206}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
