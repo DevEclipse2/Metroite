@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class Build : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class Build : MonoBehaviour
 
     public GameObject ProductionStat;
     public GameObject Menu;
+    public GameObject Poor;
     List<GameObject> displayingscreens = new List<GameObject>();
     List<GameObject> productionscreens = new List<GameObject>();
     public GameObject[] excludeDestroy;
@@ -44,8 +46,13 @@ public class Build : MonoBehaviour
 
 
 
-    int Metal;
-
+    public float Metal = 30;
+    public GameObject Port;
+    public int extractorC;
+    public int AssemblerC;
+    public int NodeC    ;
+    public int BlastRigC;
+    public int FuelCellC;
     List<GameObject> Producers;
     List<GameObject> Conveyers = new List<GameObject>();
 
@@ -88,6 +95,51 @@ public class Build : MonoBehaviour
         
 
     }
+
+    bool SubtractCost(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                if(Metal > extractorC)
+                {
+                    Metal -= extractorC;
+                    return true;
+                }
+                return false;
+
+            case 1:
+                if (Metal > AssemblerC)
+                {
+                    Metal -= AssemblerC;
+                    return true;
+                }
+                return false;
+            case 2:
+                if (Metal > NodeC)
+                {
+                    Metal -= NodeC;
+                    return true;
+                }
+                return false;
+            case 3:
+                if (Metal > BlastRigC)
+                {
+                    Metal -= BlastRigC;
+                    return true;
+                }
+                return false;
+            case 4:
+                if(Metal > FuelCellC)
+                {
+                    Metal -= FuelCellC;
+                    return true;
+                }
+                return false;
+
+        }
+        return false;
+    }
     void Start()
     {
         
@@ -125,8 +177,16 @@ public class Build : MonoBehaviour
             if (target == asteroid)
             {
                 Factorysel = false;
-                GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
-                factory.transform.parent = asteroid.transform;
+                if (SubtractCost(targetIndex))
+                {
+                    GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
+                    factory.transform.parent = asteroid.transform;
+                }
+                else
+                {
+                    Poor.transform.position = SpawnScreen.transform.position;
+                    Poor.transform.rotation = SpawnScreen.transform.rotation;
+                }
             }
             else if (target.layer == 6)
             {

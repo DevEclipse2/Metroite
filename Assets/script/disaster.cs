@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class disaster : MonoBehaviour
 {
+    public float Oxygen;
+    public float Nitrogen;
+    public float Temp;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
