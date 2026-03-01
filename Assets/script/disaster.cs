@@ -2,12 +2,21 @@ using UnityEngine;
 
 public class disaster : MonoBehaviour
 {
+    //the var names should be self-explainatory enough right??
+
     public float oxygen;
     public float pressure;
     public float temperature;
     public float hullIntegrity;
-    public bool depressValve;
-    
+    public bool depressValveOpen = false;
+
+    public float normOxygen;
+    public float normPressure;
+    public float normTemperature;
+    public float normHullIntegrity;
+
+    public float depressValveRelRate;
+
     public float disasterCheckInterval;
     public float disasterChance;
     public float disasterTimer;
@@ -38,11 +47,12 @@ public class disaster : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        oxygen = 0.21f; //in percentage 0-1
-        pressure = 1013.25f; //in hectopascals(hPa)
-        temperature = 25f; //in degrees Celsius
-        hullIntegrity = 1f; //in percentage 0-1 
-        depressValve = false;
+        
+        //norm. and max. values of vital stuff
+        oxygen = normOxygen = 0.21f; //in percentage 0-1
+        pressure = normPressure = 1013.25f; //in hectopascals(hPa)
+        temperature = normTemperature = 25f; //in degrees Celsius
+        hullIntegrity = normHullIntegrity = 1f; //in percentage 0-1 
 
         //edit below to tweak difficulty
         disasterChance = 0.3f;// 0 to 1
@@ -114,6 +124,28 @@ public class disaster : MonoBehaviour
         else {
             scbaRemaining += (scbaRefillRate * (Time.deltaTime * scbaRefillRate));
         }
+
+
+        //band-aid max value limiters
+        if ( oxygen >= normOxygen )
+        {
+            oxygen = normOxygen;
+        }
+        if ( pressure >= normPressure )
+        {
+            pressure = normPressure;
+        }
+        if ( scbaRemaining >= 1 )
+        {
+            scbaRemaining = 1;
+        }
+        if ( hullIntegrity >= normHullIntegrity )
+        {
+            hullIntegrity = normHullIntegrity;
+        }
+        
+
+
 
     }
 }
