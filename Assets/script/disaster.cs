@@ -90,7 +90,7 @@ public class disaster : MonoBehaviour
         }
         if(depressValveOpen)
         {
-            pressure -= 400;
+            pressure -= 400 * Time.deltaTime; 
             ifFireHappeningRn = false;
         }
         //base depress and O2 consum.

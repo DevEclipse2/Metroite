@@ -8,7 +8,7 @@ public class BigRedButton : Button
     {
         if(Player.GetComponent<Build>().Drill != null)
         {
-            Player.GetComponent<Build>().Drill.GetComponent<Drill>().Blast();
+            Player.GetComponent<Build>().Drill.GetComponentInChildren<Drill>().Blast();
         }
         else
         {

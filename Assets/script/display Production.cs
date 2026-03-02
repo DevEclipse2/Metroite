@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class displayProduction : MonoBehaviour
 {
-    public string[] displaytext;
+    public string[] displaytext = new string[2];
     TextMeshProUGUI tmp;
     string supertext;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,10 +18,13 @@ public class displayProduction : MonoBehaviour
     void Update()
     {
         supertext = "";
-        foreach (string s in displaytext)
+        if (displaytext.Length > 0)
         {
-            supertext += s +"<br>";
+            foreach (string s in displaytext)
+            {
+                supertext += s + "<br>";
+            }
+            tmp.text = supertext;
         }
-        tmp.text = supertext;
     }
 }

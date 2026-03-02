@@ -27,7 +27,7 @@ public class conveyer : MonoBehaviour
             Element element = Source.GetComponent<node>().PullElement(0);
             if (element != null )
             {
-                Debug.Log(Target.GetComponent<node>());
+                //Debug.Log(Target.GetComponent<node>());
                 if (Target.GetComponent<node>().AddElement(element))
                 {
                     element = Source.GetComponent<node>().PullElement(rate * Time.deltaTime);

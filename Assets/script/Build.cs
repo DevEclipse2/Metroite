@@ -51,7 +51,7 @@ public class Build : MonoBehaviour
 
     public float Metal = 30;
     public float Oxygen = 0;
-    public float Nitrogen = 20;
+    public float Nitrogen = 2;
 
     public GameObject Port;
     public int extractorC;
