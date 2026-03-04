@@ -70,7 +70,18 @@ public class disaster : MonoBehaviour
 
         disasterTimer = disasterCheckInterval;
     }
+    public void GameOver()
+    {
 
+    }
+    void Depress()
+    {
+
+    }
+    void OpenDoor()
+    {
+
+    }
     // Update is called once per frame
     void Update()
     {
