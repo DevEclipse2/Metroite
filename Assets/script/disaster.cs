@@ -47,6 +47,7 @@ public class disaster : MonoBehaviour
     public GameObject FireContainer;
     public GameObject screen;
     public Transform screenpos;
+    public Vitals vitals;
     float spawn;
     public void Increment(float value, float oxy)
     {
@@ -56,7 +57,7 @@ public class disaster : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        vitals = GetComponent<Vitals>();
         //norm. and max. values of vital stuff
         oxygen = normOxygen = 0.21f; //in percenge 0-1
         pressure = normPressure = 1013.25f; //in hectopascals(hPa)
@@ -85,6 +86,7 @@ public class disaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (gameOverDepress || gameOverOxy)
         {
             SceneManager.LoadScene("title");
@@ -110,7 +112,6 @@ public class disaster : MonoBehaviour
 
         //damage-caused depress.
         pressure -= (damageDepressMultiplier * (hullIntegrity - 1) * Time.deltaTime);
-
 
         if (disasterTimer > 0)
         {
@@ -188,6 +189,14 @@ public class disaster : MonoBehaviour
         Mathf.Clamp01(scbaRemaining);
 
 
+        */
+        FireContainer.SetActive(ifFireHappeningRn);
+        vitals.Fire = ifFireHappeningRn;
+        if (depressValveOpen)
+        {
+            vitals.OpenAirlock();
+            ifFireHappeningRn = false;
+        }
 
     }
 }

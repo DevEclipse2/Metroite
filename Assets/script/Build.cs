@@ -19,7 +19,7 @@ public class Build : MonoBehaviour
     public GameObject lightbridge;
     public GameObject[] Buildings;
     public GameObject lifeSupport;
-    disaster disaster;
+    Vitals vitals;
     public string[] BuildingsName = new string[6]
     {
      "Extractor",
@@ -153,7 +153,7 @@ public class Build : MonoBehaviour
     }
     void Start()
     {
-        disaster = lifeSupport.GetComponent<disaster>();
+        vitals = lifeSupport.GetComponent<Vitals>();
     }
     public void checkray(out GameObject target)
     {
@@ -333,7 +333,7 @@ public class Build : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        disaster.Increment(Nitrogen, Oxygen);
+        vitals.AddPressure(Nitrogen, Oxygen);
         Nitrogen = 0;
         Oxygen = 0;
         UIName.GetComponent<TextMeshProUGUI>().text = BuildingsName[targetIndex];

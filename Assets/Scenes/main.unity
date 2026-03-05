@@ -1220,6 +1220,37 @@ Transform:
   - {fileID: 286292803}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &742031340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742031341}
+  m_Layer: 7
+  m_Name: Face
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742031341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742031340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.44, z: 1.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1159975685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760560335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,6 +2196,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1086971952}
   - component: {fileID: 1086971953}
+  - component: {fileID: 1086971955}
+  - component: {fileID: 1086971954}
   m_Layer: 0
   m_Name: Disaster
   m_TagString: Untagged
@@ -2232,6 +2265,74 @@ MonoBehaviour:
   FireContainer: {fileID: 456260935}
   screen: {fileID: 588482084}
   screenpos: {fileID: 927738288}
+  vitals: {fileID: 0}
+--- !u!114 &1086971954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086971951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47484a1f68b183c40b2690e76ba8ae6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Alerts
+  playerFace: {fileID: 742031341}
+  PrefabOxyWarnLow: {fileID: 0}
+  PrefabOxyWarnLethal: {fileID: 0}
+  PrefabOxyWarnHigh: {fileID: 0}
+  PrefabOxyWarnExplosion: {fileID: 0}
+  PrefabPressureWarnLowDeath: {fileID: 0}
+  PrefabPressureWarnLowBreathe: {fileID: 0}
+  PrefabPressureWarnHigh: {fileID: 0}
+  PrefabFireWarn: {fileID: 0}
+  PrefabSmokeWarn: {fileID: 0}
+  PrefabPowerWarn: {fileID: 0}
+  AlertTimer: 0.8
+  AlertTimerL: 1.2
+--- !u!114 &1086971955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086971951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fc2a7263b67f74c9d86a365b07f2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vitals
+  R: 8.31
+  Pressure: 0
+  DepressurizationRate: 8
+  AdditionalDepressurizationRate: 12
+  Temperature: 0
+  OxygenC: 0
+  NitrogenMols: 2234
+  OxygenMols: 660
+  HullInt: 0
+  BreathVol: 0.35
+  OxyCLevels:
+  - 0.1
+  - 0.15
+  - 0.21
+  - 0.235
+  - 0.5
+  OxyMLevels:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  Plevels:
+  - 45
+  - 60
+  - 100
+  - 160
+  - 220
+  oxystat: 0
+  pstat: 0
 --- !u!1 &1133317588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,9 +2573,17 @@ PrefabInstance:
       objectReference: {fileID: 1183264349}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2809933779058036753, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 742031341}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+--- !u!4 &1159975685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2809933779058036753, guid: 445aabf159c8e514fb7300b80e4ecdc7, type: 3}
+  m_PrefabInstance: {fileID: 1159975684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1183264349 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1018664272722485354, guid: 0c9dd945ded2b6b4fa359c6a73198b21, type: 3}
