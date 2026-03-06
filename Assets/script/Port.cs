@@ -19,6 +19,10 @@ public class Port : node
         Metal.element = production.metal;
         buildclass = build.GetComponent<Build>();
     }
+    public override string GetName()
+    {
+        return "Port";
+    }
     public override bool AddElement(Element elementin)
     {
         switch (elementin.element)

@@ -27,7 +27,7 @@ public class Build : MonoBehaviour
      "Node",
      "Blast Rig",
      "Fuel Cell",
-     " "
+     "Spark"
     };
     public Vector3 hitpt;
     public Vector3 normal;
@@ -59,9 +59,51 @@ public class Build : MonoBehaviour
     public int NodeC    ;
     public int BlastRigC;
     public int FuelCellC;
-    List<GameObject> Producers;
+    List<GameObject> Extractors = new List<GameObject>();
+    List<GameObject> Assemblers = new List<GameObject>();
+    List<GameObject> Batteries = new List<GameObject>();
+    List<GameObject> Nodes = new List<GameObject>();
+    GameObject BlastRigs;
+    public List<GameObject> Sparks = new List<GameObject>();
     List<GameObject> Conveyers = new List<GameObject>();
 
+    string[] adjective = new string[16]{
+     "persistent",
+     "vigilant",
+     "cautious",
+     "macabre",
+     "passionate",
+     "lonely",
+     "patient",
+     "silent",
+     "ancient",
+     "inquisitive",
+     "stable",
+     "static",
+     "constant",
+     "hollow",
+     "bright",
+     "tranquil"
+    };
+    string[] noun = new string[15]{
+        "spectre",
+        "scribe",
+        "traveller",
+        "wanderer",
+        "architect",
+        "atonement",
+        "spirit",
+        "observer",
+        "construct",
+        "truth",
+        "cartographer",
+        "scholar",
+        "grief",
+        "reclaimer",
+        "fate"
+    };
+    float PowerUpdateTimer;
+    public float PowerUpdateRate = 1;
     void checkConveyer(GameObject Lightbridge)
     {
         if(Conveyers.Count == 0)
@@ -105,7 +147,6 @@ public class Build : MonoBehaviour
         conveyertarget = null;
 
     }
-
     bool SubtractCost(int index)
     {
         switch (index)
@@ -153,6 +194,10 @@ public class Build : MonoBehaviour
     }
     void Start()
     {
+        if(Sparks.Count == 0 || Sparks[0] == null)
+        {
+            Debug.LogError("MissingSpark");
+        }
         vitals = lifeSupport.GetComponent<Vitals>();
     }
     public void checkray(out GameObject target)
@@ -176,10 +221,6 @@ public class Build : MonoBehaviour
         }
 
     }
-    void build()
-    {
-
-    }
     public void OnClick(InputValue value)
     {
         if(value.isPressed == true)
@@ -191,8 +232,34 @@ public class Build : MonoBehaviour
                 if (SubtractCost(targetIndex))
                 {
                     GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
+                    switch (targetIndex)
+                    {
+                        case 0:
+                            Extractors.Add(factory);
+                            break;
+                        case 1:
+                            Assemblers.Add(factory);
+                            break;
+                        case 2:
+                            Nodes.Add(factory);
+                            break;
+                        case 3:
+                            BlastRigs = factory;
+                            break;
+                        case 4:
+                            Batteries.Add(factory);
+                            break;
+                        case 5:
+                            Sparks.Add(factory);
+                            string newname = adjective[Random.Range(0, 15)];
+                            newname += noun[Random.Range(0, 14)];
+                            factory.GetComponent<Spark>().Init(newname , this.gameObject.GetComponent<Build>());
+                            break;
+                        default:
+                            break;
+                    }
                     factory.transform.parent = asteroid.transform;
-                    if(BlastRigC > 1000 && Drill == null)
+                    if(BlastRigC < 1000 && Drill == null)
                     {
                         Drill = factory;
                     }
@@ -282,7 +349,6 @@ public class Build : MonoBehaviour
             target.GetComponent<node>().ChangeProduction((int)Mathf.Clamp(scroll.y, -1, 1), out finalindex);
             UIText.GetComponent<displayProduction>().displaytext = alternatives;
             UIStuff.GetComponent<TextMeshProUGUI>().text = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
-
         }
 
 
@@ -330,20 +396,43 @@ public class Build : MonoBehaviour
         Menu.transform.position = SpawnScreen.transform.position;
         Menu.transform.rotation = SpawnScreen.transform.rotation;
     }
+
+    void UpdatePower()
+    {
+        // run stage 1, measuring consumption and local production
+        // run stage 2, transferring power to each other 
+        // run  stage 3, where sparks without adequate power are deactivated
+    }
     // Update is called once per frame
     void Update()
     {
+
+        UpdatePower();
+        PowerUpdateTimer += Time.deltaTime;
+
+
+
+
         vitals.AddPressure(Nitrogen, Oxygen);
         Nitrogen = 0;
         Oxygen = 0;
         UIName.GetComponent<TextMeshProUGUI>().text = BuildingsName[targetIndex];
+        checkray(out target);
+        if(target.layer == 6)
+        {
+            int finalindex = 0;
+            target.GetComponent<node>().ReadProduction(out alternatives);
+            target.GetComponent<node>().ChangeProduction(0, out finalindex);
+            UIText.GetComponent<displayProduction>().displaytext = alternatives;
+            UIStuff.GetComponent<TextMeshProUGUI>().text = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
+        }
         //if ( target.layer == 6) {
-            /*string[] name = new string[1];
-            string name2 = " ";
-            target.GetComponent<node>().GetName(out name2);
-            name[0] = name2;
-            UIName.GetComponent<displayProduction>().displaytext = name;
-            */        
+        /*string[] name = new string[1];
+        string name2 = " ";
+        target.GetComponent<node>().GetName(out name2);
+        name[0] = name2;
+        UIName.GetComponent<displayProduction>().displaytext = name;
+        */
         //}
     }
 }

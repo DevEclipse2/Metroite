@@ -27,6 +27,10 @@ public class Processor : node
 
 
     }
+    public override string GetName()
+    {
+        return "Assembler";
+    }
     public override bool AddElement(Element elementin)
     {
         switch (elementin.element)

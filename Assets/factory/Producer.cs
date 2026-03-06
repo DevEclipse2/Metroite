@@ -28,6 +28,10 @@ public class Producer : node
     List<float> pushtimes = new List<float>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     // Update is called once per frame
+    public override string GetName()
+    {
+        return thingname;
+    }
     void Update()
     {
         if(element == null)

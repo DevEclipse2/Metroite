@@ -26,9 +26,9 @@ public class node : MonoBehaviour
     {
 
     }
-    public virtual void GetName(out string name)
+    public virtual string GetName()
     {
-        name = "expedition 33";
+       return "expedition 33";
     }
     public virtual void ReadProduction(out string[] alternatives)
     {
