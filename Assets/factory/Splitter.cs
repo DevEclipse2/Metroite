@@ -53,6 +53,11 @@ public class Splitter : node
             }
         }
     }
+
+    public override string GetName()
+    {
+        return "Node";
+    }
     public override void GetStats(out string name, out string mat, out float input, out float output)
     {
         name = "Node";

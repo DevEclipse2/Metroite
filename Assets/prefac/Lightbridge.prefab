@@ -59,7 +59,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: defd0382f164bc846bb669cdf068469e, type: 2}
+  - {fileID: 2100000, guid: 680f2f74caae4494b8446eb79ede0dc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,3 +168,10 @@ MonoBehaviour:
   Target: {fileID: 0}
   rate: 3.2
   LineRenderer: {fileID: 2298339546428467163}
+  materialColors:
+  - {r: 0.35012457, g: 0.38317874, b: 0.3962264, a: 1}
+  - {r: 0.61059684, g: 0.76939565, b: 0.7735849, a: 1}
+  - {r: 0.4940073, g: 0.8679245, b: 0.50147426, a: 1}
+  - {r: 0.8930817, g: 0.65975034, b: 0.25556725, a: 1}
+  - {r: 0.899371, g: 0.8831173, b: 0.38746482, a: 1}
+  ErrorColor: {r: 0.66666657, g: 0.2243186, b: 0.2243186, a: 0}

@@ -47,6 +47,13 @@ public class Drill : node
         }
         return false;
     }
+
+    public override string GetName()
+    {
+        return "Drill";
+    }
+
+
     // Update is called once per frame
     public void Blast()
     {

@@ -7,6 +7,14 @@ public class node : MonoBehaviour
     {
         
     }
+    public virtual void AddSpark(GameObject spark)
+    {
+
+    }
+    public virtual void SubtractPower(out float power)
+    {
+        power = 0;
+    }
     public virtual void GetStats(out string name, out string mat , out float inputs, out float outputs)
     {
         name = "";
