@@ -6,7 +6,7 @@ using TMPro;
 public class HudTips : MonoBehaviour
 {
     public string OxyMaskHint;
-    public List<string> Tutorial;
+    public string[] Tutorial;
     int index = 0;
     int currentindex = 0;
     public float fadeOutT;
@@ -79,6 +79,14 @@ public class HudTips : MonoBehaviour
             fadeout = true;
         }
     }
+    public void Space()
+    {
+        if (currentindex == 8 && !fadein && !fadeout)
+        {
+            index++;
+            fadeout = true;
+        }
+    }
     public void LookAsteroid()
     {
         if (currentindex == 2 && !fadein && !fadeout)
@@ -105,7 +113,15 @@ public class HudTips : MonoBehaviour
         if (fadein)
         {
             currentindex = index;
-            tmp.text = Tutorial[currentindex];
+            if(currentindex < Tutorial.Length)
+            {
+                tmp.text = Tutorial[currentindex];
+
+            }
+            else
+            {
+                tmp.text = "";
+            }
             timer += Time.deltaTime;
             tmp.color = new UnityEngine.Color(1, 1, 1, (timer / fadeOutT));
 

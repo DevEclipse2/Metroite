@@ -369,6 +369,7 @@ public class Build : MonoBehaviour
     }
     public void OnJump()
     {
+        hudTips.Space();
         checkray(out target);
         if(target.layer == 6)
         {
@@ -432,7 +433,7 @@ public class Build : MonoBehaviour
         Oxygen = 0;
         UIName.GetComponent<TextMeshProUGUI>().text = BuildingsName[targetIndex];
         checkray(out target);
-        if(target.layer == 3)
+        if (target != null && target.layer == 3)
         {
             //Debug.Log("Asteroid");
             hudTips.LookAsteroid();
