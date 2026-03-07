@@ -24,16 +24,16 @@ public class FuelCell : node
     {
         sparks.Add(spark.GetComponent<Spark>());
     }
-    public override void SubtractPower(out float power)
+    public override void SubtractPower(out float power, float availpwr, bool FirstT)
     {
         if (low)
         {
-            power = poweroutput1/sparks.Count;
+            power = availpwr += poweroutput1 / sparks.Count;
 
         }
         else
         {
-            power = poweroutput2/sparks.Count;
+            power = availpwr += poweroutput2 / sparks.Count;
         }
     }
     public override bool AddElement(Element elementin)

@@ -8,7 +8,8 @@ public class conveyer : MonoBehaviour
     Element bufferelement;
     public float rate = 3.2f;
     public LineRenderer LineRenderer;
-    Material bridgeMaterial;
+    LineRenderer bridgeMaterial;
+    Material mat;
     private Color target;
     private Color current;
     public Color[] materialColors;
@@ -16,7 +17,9 @@ public class conveyer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bridgeMaterial = GetComponent<Material>();
+        bridgeMaterial = GetComponent<LineRenderer>();
+        mat = new Material(bridgeMaterial.material);
+        bridgeMaterial.material = mat;
     }
     public void Instance(GameObject srce, GameObject trg)
     {
@@ -27,11 +30,9 @@ public class conveyer : MonoBehaviour
     void ChangeColor()
     {
         target = materialColors[bufferelement.element];
-        if(target != current)
-        {
-            current = target;
-            bridgeMaterial.SetColor("Color", current);
-        }
+        mat.SetColor("Color", target);
+        mat.SetColor("_Color",target);
+        bridgeMaterial.material = mat;
     }
     // Update is called once per frame
     void Update()

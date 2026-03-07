@@ -19,6 +19,6 @@ public class TitleController : MonoBehaviour
     public void OnGameStart()
     {
         // load the first scene (index 0) in Build Settings
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

@@ -66,7 +66,8 @@ public class Build : MonoBehaviour
     GameObject BlastRigs;
     public List<GameObject> Sparks = new List<GameObject>();
     List<GameObject> Conveyers = new List<GameObject>();
-
+    public GameObject hudtip;
+    HudTips hudTips;
     string[] adjective = new string[16]{
      "persistent",
      "vigilant",
@@ -194,6 +195,7 @@ public class Build : MonoBehaviour
     }
     void Start()
     {
+        hudTips = hudtip.GetComponent<HudTips>();
         if(Sparks.Count == 0 || Sparks[0] == null)
         {
             Debug.LogError("MissingSpark");
@@ -418,13 +420,23 @@ public class Build : MonoBehaviour
         Oxygen = 0;
         UIName.GetComponent<TextMeshProUGUI>().text = BuildingsName[targetIndex];
         checkray(out target);
-        if(target.layer == 6)
+        if(target.layer == 3)
         {
-            int finalindex = 0;
-            target.GetComponent<node>().ReadProduction(out alternatives);
-            target.GetComponent<node>().ChangeProduction(0, out finalindex);
-            UIText.GetComponent<displayProduction>().displaytext = alternatives;
-            UIStuff.GetComponent<TextMeshProUGUI>().text = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
+            //Debug.Log("Asteroid");
+            hudTips.LookAsteroid();
+        }
+        if(target != null)
+        {
+            if(target.layer == 6)
+            {
+                int finalindex = 0;
+                alternatives = new string[1];
+                target.GetComponent<node>().ReadProduction(out alternatives);
+                target.GetComponent<node>().ChangeProduction(0, out finalindex);
+                UIText.GetComponent<displayProduction>().displaytext = alternatives;
+                UIStuff.GetComponent<TextMeshProUGUI>().text = alternatives[(int)Mathf.Clamp(finalindex, 0, alternatives.Length)];
+            }
+            
         }
         //if ( target.layer == 6) {
         /*string[] name = new string[1];

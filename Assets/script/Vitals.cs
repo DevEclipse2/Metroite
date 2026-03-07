@@ -126,8 +126,9 @@ public class Vitals : MonoBehaviour
 
     public void AddPressure( float N , float O)
     {
-        NitrogenMols += N;
-        OxygenMols += O;
+        //Debug.Log("Add" + N + "oxy"+ O);
+        NitrogenMols += N * 60;
+        OxygenMols += O   * 40;
     }
     void UpdateFire()
     {

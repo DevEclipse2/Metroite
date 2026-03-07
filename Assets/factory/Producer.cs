@@ -26,23 +26,57 @@ public class Producer : node
     List<float> outputs = new List<float>();
     List<float> pulltimes = new List<float>();
     List<float> pushtimes = new List<float>();
+    List<Spark> sparks = new List<Spark>();
+    public float powerRunning = 0.25f;
+    bool powered;
+    float powerRequired;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     // Update is called once per frame
     public override string GetName()
     {
         return thingname;
     }
+    public override void AddSpark(GameObject spark)
+    {
+        sparks.Add(spark.GetComponent<Spark>());
+    }
+    public override void SubtractPower(out float power, float availpwr, bool FirstT)
+    {
+        if (FirstT)
+        {
+            powerRequired = powerRunning;
+        }
+        if (availpwr > powerRequired / sparks.Count)
+        {
+            power = availpwr - powerRequired / sparks.Count;
+            powerRequired -= powerRequired / sparks.Count;
+        }
+        else
+        {
+            power = 0;
+            powerRequired -= availpwr;
+        }
+    }
+
+    public override void ChangeActive(bool active)
+    {
+        powered = active;
+    }
     void Update()
     {
+        powered = true;
         if(element == null)
         {
             element = new Element();
-            element.element = 2;
+            element.element = production.nitrogen;
         }
         //Debug.Log(element.amount);
-        element.amount += rate * Time.deltaTime;
-        inputs.Add(rate * Time.deltaTime);
-        pushtimes.Add(Time.realtimeSinceStartup);
+        if (powered)
+        {
+            element.amount += rate * Time.deltaTime;
+            inputs.Add(rate * Time.deltaTime);
+            pushtimes.Add(Time.realtimeSinceStartup);
+        }
         if(pulltimes.Count > 0)
         {
             if (pulltimes[0] < Time.realtimeSinceStartup - 1) 

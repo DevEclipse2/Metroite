@@ -11,9 +11,13 @@ public class node : MonoBehaviour
     {
 
     }
-    public virtual void SubtractPower(out float power)
+    public virtual void SubtractPower(out float finalpower , float availpower , bool firstT)
     {
-        power = 0;
+        finalpower = availpower;
+    }
+    public virtual void ChangeActive( bool active)
+    {
+
     }
     public virtual void GetStats(out string name, out string mat , out float inputs, out float outputs)
     {

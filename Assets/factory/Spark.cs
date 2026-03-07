@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Spark : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Spark : MonoBehaviour
     GameObject          LosDrill;
     List<GameObject>    LosFuelCells;
     GameObject          LosPort;
-    public double PowerAvailable;
+    public float PowerAvailable;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -72,16 +73,31 @@ public class Spark : MonoBehaviour
             }
         }
     }
-    public void UpdatePower()
+    public void UpdatePower( bool firstT)
     {
         PowerAvailable = 0;
         foreach(GameObject fCell in LosFuelCells)
         {
             float power;
-            fCell.GetComponent<node>().SubtractPower(out power);
-            PowerAvailable += power;
+            fCell.GetComponent<node>().SubtractPower(out power, PowerAvailable , firstT);
+            PowerAvailable = power;
         }
-        foreach
+        foreach (GameObject Miner in LosMiners)
+        {
+            float power;
+            Miner.GetComponent<node>().SubtractPower(out power, PowerAvailable, firstT);
+            PowerAvailable = power;
+            
+        }
+        foreach (GameObject assm in LosAssemblers)
+        {
+            float power;
+            //first send amount of power available,
+            assm.GetComponent<node>().SubtractPower(out power, PowerAvailable, firstT);
+            PowerAvailable = power;
+            
+        }
+        //foreach
     }
     // Update is called once per frame
     void Update()

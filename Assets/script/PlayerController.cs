@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     Build buildtool;
     GameObject looking;
     bool viewlock;
+    public GameObject hudtip;
+    HudTips hudTips;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,16 +31,20 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Gamepad connected!");
             controller = true;
         }
+        hudTips = hudtip.GetComponent<HudTips>();
         rb = GetComponent<Rigidbody>();
     }
     public void OnViewLock(InputValue value)
     {
         viewlock = !viewlock;
+        
+        hudTips.ToggleRot();
     }
     public void OnMove( InputValue value)
     {
         if (value != null)
         {
+            hudTips.Move();
             //Debug.Log(value.Get<Vector2>());
             movedir = value.Get<Vector2>();
             //cameraLook.rotation
@@ -60,7 +67,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        
+        hudTips.Look();
+        //Debug.Log("look");
         float mouseX = value.Get<Vector2>().x;
         float mouseY = value.Get<Vector2>().y;
 
