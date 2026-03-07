@@ -47,6 +47,38 @@ public class HudTips : MonoBehaviour
             fadeout = true;
         }
     }
+    public void Scroll()
+    {
+        if (currentindex == 4 && !fadein && !fadeout)
+        {
+            index++;
+            fadeout = true;
+        }
+    }
+    public void ScrollP()
+    {
+        if (currentindex == 6 && !fadein && !fadeout)
+        {
+            index++;
+            fadeout = true;
+        }
+    }
+    public void Click()
+    {
+        if (currentindex == 5 && !fadein && !fadeout)
+        {
+            index++;
+            fadeout = true;
+        }
+    }
+    public void RClick()
+    {
+        if (currentindex == 7 && !fadein && !fadeout)
+        {
+            index++;
+            fadeout = true;
+        }
+    }
     public void LookAsteroid()
     {
         if (currentindex == 2 && !fadein && !fadeout)

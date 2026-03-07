@@ -233,6 +233,11 @@ public class Build : MonoBehaviour
                 Factorysel = false;
                 if (SubtractCost(targetIndex))
                 {
+                    if (targetIndex == 0)
+                    {
+                        hudTips.Click();
+
+                    }
                     GameObject factory = Instantiate(Buildings[targetIndex], hitpt + normal * 0.1f, Quaternion.LookRotation(normal));
                     switch (targetIndex)
                     {
@@ -308,6 +313,7 @@ public class Build : MonoBehaviour
 
         if (value.isPressed == true && target != null&&  target.layer == 6)
         {
+            hudTips.RClick();
             source = !source;
             if(source)
             {
@@ -326,6 +332,11 @@ public class Build : MonoBehaviour
     }
     public void OnScrollWheel(InputValue value)
     {
+        if(targetIndex == 0)
+        {
+            hudTips.Scroll();
+
+        }
         checkray(out target);
         if(target == asteroid)
         {
@@ -346,6 +357,7 @@ public class Build : MonoBehaviour
         }
         else
         {
+            hudTips.ScrollP();
             int finalindex = 0;
             target.GetComponent<node>().ReadProduction(out alternatives);
             target.GetComponent<node>().ChangeProduction((int)Mathf.Clamp(scroll.y, -1, 1), out finalindex);
