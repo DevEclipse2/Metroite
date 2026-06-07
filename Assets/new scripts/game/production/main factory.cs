@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Threading;
 using System;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class mainfactory : MonoBehaviour
 {
@@ -13,19 +15,21 @@ public class mainfactory : MonoBehaviour
         public int type;
         public bool powered;
         public float consumptionRate;
-        public int[] outputs;
+        public UInt16[] outputs;
         public float[] productionRate;
-        public int[] connectedIds;
-        public int[] connectedOutputs;
+        public UInt16[] connectedIds;
+        public UInt16[] connectedOutputs;
     }
     public struct powerNode
     {
         public int id;
         public int[] connectedNodes;
         public bool[] powered;
-        public float[] consumptionRates; // negative for power input
-        public float inflow ;
-        public float outflow;
+        public short[] consumptionRates; // negative for power input
+        public UInt16 inflow;
+        public int prevBalance;
+        public int sum;
+        public UInt16 outflow;
     }
 
     [SerializeField]
@@ -48,6 +52,9 @@ public class mainfactory : MonoBehaviour
 
     Thread factoryThread;
 
+    UInt32 factoryNodeId = 0;
+    UInt32 powerNodeId = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -64,22 +71,36 @@ public class mainfactory : MonoBehaviour
         Stopwatch.Reset();
         Stopwatch.Start();
         runningFactory = true;
+
         for (int i = 0; i < powerNodes.Length; i++)
         {
-
-        }
-        for (int i = 0; i < groundNodes.Length; i++) 
-        {
-            if (!groundNodes[i].powered)
+            //first searches all powernodes for active factories
+            //and save their ids
+            var powerNode = powerNodes[i];
+            foreach (float consumptionRate in powerNode.consumptionRates)
             {
-                break;
+                if (consumptionRate > 0)
+                {
+                    powerNode.outflow += (UInt16)consumptionRate;
+                }
+                else
+                {
+                    powerNode.inflow += (UInt16)consumptionRate;
+                }
+                powerNode.sum += (UInt16)consumptionRate;
             }
-            switch(groundNodes[i].type)
+            if(powerNode.sum != powerNode.prevBalance)
             {
-
+                //then parses
+            }
+            else
+            {
+                //everything runs normally
             }
         }
-
+        //then looks them up
+        //then runs
+        
         Stopwatch.Stop();
         mspt = Stopwatch.ElapsedMilliseconds / 1000;
         runningFactory = false;
