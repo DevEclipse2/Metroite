@@ -58,7 +58,20 @@ public class local_player : SpaceObject
             controller = true;
         }
     }
+    int GroundCheck()
+    {
 
+        return 0;
+    }
+    public void SpaceMovement()
+    {
+
+    }
+
+    public void GroundMovement()
+    {
+
+    }
     public void OnLook(InputValue value)
     {
         if(paused)
@@ -123,6 +136,22 @@ public class local_player : SpaceObject
     // Update is called once per frame
     void Update()
     {
+        switch(GroundCheck())
+        {
+            case 0:
+            {
+                SpaceMovement();
+            break; 
+            }
+            case 1: 
+            { break; }
+            case 2: 
+            { break; }
+            case 3: 
+            { break; }
+            default: 
+            { break; }
+        }
         if (speedRamp < 0.03 && speedRamp > -0.03 && movedir.magnitude == 0)
         {
             speedRamp = 0;
