@@ -5,7 +5,7 @@ public class gravityField : MonoBehaviour
 {
 
     public GameObject[] gravMarkers;
-    public MeshCollider Rooms;
+    public MeshCollider Room;
     public bool enabled;
     void generateField()
     {
